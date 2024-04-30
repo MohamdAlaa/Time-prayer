@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.divider {
+  background-color: #777;
+}
+
+.prayer-satck-container {
+  margin-top: 2rem;
+
+  justify-content: space-evenly;
+}
+.MuiGrid2-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.slect-stack-container {
+  margin-top: 1rem;
+  justify-content: center;
+}
+.third-row {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6rem;
+}
+
+.MuiOutlinedInput-notchedOutline {
+  border-color: white !important;
+  border-radius: 10px !important;
+  border: none;
+}
+.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+  background-color: white;
+  border-color: white;
+  border-radius: 10px;
+  direction: ltr;
+  border: none;
+}
