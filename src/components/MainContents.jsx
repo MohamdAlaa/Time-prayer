@@ -15,7 +15,7 @@ const MainContents = () => {
     Dhuhr: "00:00",
     Asr: "00:00",
     Sunset: "00:00",
-    Isha: "00:00",
+    Isha: "00:000",
   });
 
   const [country, setCountry] = useState("");
