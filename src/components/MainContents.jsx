@@ -15,7 +15,7 @@ const MainContents = () => {
     Dhuhr: "00:00",
     Asr: "00:00",
     Sunset: "00:00",
-    Isha: "00:000",
+    Isha: "00:00",
   });
 
   const [country, setCountry] = useState("");
@@ -37,7 +37,7 @@ const MainContents = () => {
     if (country && city) {
       getTimings();
     } else {
-      // alert("Please fill in both country and city.");
+      alert("Please fill in both country and city.");
     }
   };
 
