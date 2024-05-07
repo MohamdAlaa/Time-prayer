@@ -49,7 +49,7 @@ const MainContents = () => {
         <Grid xs={6}>
           <div>
             <h2>{date}</h2>
-            <h1>{newciry}</h1>
+            <h1 style={{ textTransform: "capitalize" }}>{newciry}</h1>
           </div>
         </Grid>
         <Grid xs={5}>
