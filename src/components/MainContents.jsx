@@ -6,18 +6,28 @@ import axios from "axios";
 import moment from "moment";
 
 const MainContents = () => {
-  const [timings, setTiminig] = useState({
-    Fajr: "00:00",
-    Dhuhr: "00:00",
-    Asr: "00:00",
-    Sunset: "00:00",
-    Isha: "00:00",
-  });
-
+  //Stats
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
   const [newciry, setNewCity] = useState("");
   const [date, setDate] = useState("");
+  const [nextPrayerIndex, setNextPrayerIndex] = useState(2);
+
+  const [timings, setTiminig] = useState({
+    Fajr: "04:30",
+    Dhuhr: "12:51",
+    Asr: "16:28",
+    Sunset: "19:36",
+    Isha: "21:02",
+  });
+
+  const prayersArray = [
+    { key: "Fajr", displayName: "الفجر" },
+    { key: "Dhuhr", displayName: "الظهر" },
+    { key: "Asr", displayName: "العصر" },
+    { key: "Sunset", displayName: "المغرب" },
+    { key: "Isha", displayName: "العشاء" },
+  ];
 
   const getTimings = async () => {
     const response = await axios.get(
@@ -29,6 +39,52 @@ const MainContents = () => {
     setCity("");
   };
 
+  useEffect(() => {
+    const today = moment();
+    setDate(today.format("MMM Do YYYY | h:mm"));
+
+    const interval = setInterval(() => {
+      setupCountdownTimer();
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const setupCountdownTimer = () => {
+    const momentNow = moment();
+    let PrayerIndex = 2;
+
+    if (
+      momentNow.isAfter(moment(timings["Fajr"], "hh:mm")) &&
+      momentNow.isBefore(moment(timings["Dhuhr"], "hh:mm"))
+    ) {
+      PrayerIndex = 1;
+    } else if (
+      momentNow.isAfter(moment(timings["Dhuhr"], "hh:mm")) &&
+      momentNow.isBefore(moment(timings["Asr"], "hh:mm"))
+    ) {
+      PrayerIndex = 2;
+    } else if (
+      momentNow.isAfter(moment(timings["Asr"], "hh:mm")) &&
+      momentNow.isBefore(moment(timings["Sunset"], "hh:mm"))
+    ) {
+      PrayerIndex = 3;
+    } else if (
+      momentNow.isAfter(moment(timings["Sunset"], "hh:mm")) &&
+      momentNow.isBefore(moment(timings["Isha"], "hh:mm"))
+    ) {
+      PrayerIndex = 4;
+    } else {
+      PrayerIndex = 0;
+    }
+
+    setNextPrayerIndex(PrayerIndex);
+
+    // TODO i will start the video from  2:40:00
+  };
+
   const handleButtonClick = () => {
     if (country && city) {
       getTimings();
@@ -36,11 +92,6 @@ const MainContents = () => {
       alert("Please fill in both country and city.");
     }
   };
-
-  useEffect(() => {
-    const today = moment();
-    setDate(today.format("MMM Do YYYY | h:mm"));
-  }, []);
 
   return (
     <>
@@ -54,7 +105,9 @@ const MainContents = () => {
         </Grid>
         <Grid xs={5}>
           <div>
-            <h2>الوقت المتبقي حتي الصلاه القادمه</h2>
+            <h2>
+              الصلاة القادمه هي صلاة {prayersArray[nextPrayerIndex].displayName}
+            </h2>
             <h1>00.10.28</h1>
           </div>
         </Grid>
