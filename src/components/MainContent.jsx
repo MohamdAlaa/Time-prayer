@@ -5,20 +5,21 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 
-const MainContents = () => {
+const MainContent = () => {
   //Stats
   const [country, setCountry] = useState("");
   const [city, setCity] = useState("");
-  const [newciry, setNewCity] = useState("");
+  const [newciry, setNewCity] = useState("cairo");
   const [date, setDate] = useState("");
   const [nextPrayerIndex, setNextPrayerIndex] = useState(2);
+  const [remainingTime, setRemainingTime] = useState("");
 
   const [timings, setTiminig] = useState({
-    Fajr: "04:30",
+    Fajr: "04:29",
     Dhuhr: "12:51",
     Asr: "16:28",
-    Sunset: "19:36",
-    Isha: "21:02",
+    Sunset: "19:37",
+    Isha: "21:03",
   });
 
   const prayersArray = [
@@ -38,6 +39,13 @@ const MainContents = () => {
     setCountry("");
     setCity("");
   };
+  const handleButtonClick = () => {
+    if (country && city) {
+      getTimings();
+    } else {
+      alert("Please fill in both country and city.");
+    }
+  };
 
   useEffect(() => {
     const today = moment();
@@ -50,7 +58,7 @@ const MainContents = () => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [timings]);
 
   const setupCountdownTimer = () => {
     const momentNow = moment();
@@ -82,15 +90,28 @@ const MainContents = () => {
 
     setNextPrayerIndex(PrayerIndex);
 
-    // TODO i will start the video from  2:40:00
-  };
+    const nextPrayerObject = prayersArray[PrayerIndex];
+    const nextPrayerTime = timings[nextPrayerObject.key];
+    const nextPrayerTimeMoment = moment(nextPrayerTime, "hh:mm");
 
-  const handleButtonClick = () => {
-    if (country && city) {
-      getTimings();
-    } else {
-      alert("Please fill in both country and city.");
+    let remainingTime = moment(nextPrayerTime, "hh:mm").diff(momentNow);
+
+    if (remainingTime < 0) {
+      const midnightDiff = moment("23:59:59", "hh:mm:ss").diff(momentNow);
+      const fajrToMidnightDiff = nextPrayerTimeMoment.diff(
+        moment("00:00:00", "hh:mm:ss")
+      );
+
+      const totalDiffernce = midnightDiff + fajrToMidnightDiff;
+
+      remainingTime = totalDiffernce;
     }
+
+    const durationRemainingTime = moment.duration(remainingTime);
+
+    setRemainingTime(
+      `${durationRemainingTime.seconds()} : ${durationRemainingTime.minutes()} : ${durationRemainingTime.hours()}`
+    );
   };
 
   return (
@@ -108,7 +129,7 @@ const MainContents = () => {
             <h2>
               الصلاة القادمه هي صلاة {prayersArray[nextPrayerIndex].displayName}
             </h2>
-            <h1>00.10.28</h1>
+            <h1>{remainingTime}</h1>
           </div>
         </Grid>
       </Grid>
@@ -169,4 +190,4 @@ const MainContents = () => {
   );
 };
 
-export default MainContents;
+export default MainContent;
