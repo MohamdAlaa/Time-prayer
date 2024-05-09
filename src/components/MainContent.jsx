@@ -117,7 +117,7 @@ const MainContent = () => {
   return (
     <>
       {/*===> First Row <===*/}
-      <Grid container>
+      <Grid container style={{ direction: "rtl" }}>
         <Grid xs={6}>
           <div>
             <h2>{date}</h2>
@@ -135,7 +135,11 @@ const MainContent = () => {
       </Grid>
       <Divider className="divider" />
       {/*===> Scound Row <===*/}
-      <Stack className="prayer-satck-container" direction={"row"}>
+      <Stack
+        className="prayer-satck-container"
+        direction={"row"}
+        style={{ direction: "rtl" }}
+      >
         <Prayer
           name="الفجر"
           time={timings.Fajr}
@@ -163,7 +167,7 @@ const MainContent = () => {
         />
       </Stack>
       {/*===> third Row <===*/}
-      <Stack direction="row" className="third-row">
+      <Stack direction="row" className="third-row" style={{ direction: "rtl" }}>
         <TextField
           value={country}
           onChange={(e) => setCountry(e.target.value)}

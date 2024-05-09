@@ -32,6 +32,12 @@
   gap: 6rem;
 }
 
+.MuiInputBase-formControl {
+  background-color: white !important;
+}
+.MuiOutlinedInput-input {
+  direction: ltr;
+}
 .MuiOutlinedInput-notchedOutline {
   border-color: white !important;
   border-radius: 10px !important;
