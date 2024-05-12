@@ -11,6 +11,8 @@
 }
 
 .prayer-satck-container {
+  display: flex;
+  flex-direction: row !important;
   margin-top: 2rem;
 
   justify-content: space-evenly;
@@ -49,4 +51,30 @@
   border-radius: 10px;
   direction: ltr;
   border: none;
+}
+
+@media (max-width: 767px) {
+  .prayer-satck-container {
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+}
+.third-row {
+  gap: 3rem;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .prayer-satck-container {
+    gap: 1rem;
+  }
+  .MuiTypography-h1 {
+    font-size: 60px !important;
+  }
+}
+@media (min-width: 1024px) {
+  .prayer-satck-container {
+    gap: 0.5rem;
+  }
 }

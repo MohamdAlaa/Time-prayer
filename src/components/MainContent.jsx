@@ -135,36 +135,12 @@ const MainContent = () => {
       </Grid>
       <Divider className="divider" />
       {/*===> Scound Row <===*/}
-      <Stack
-        className="prayer-satck-container"
-        direction={"row"}
-        style={{ direction: "rtl" }}
-      >
-        <Prayer
-          name="الفجر"
-          time={timings.Fajr}
-          img="https://wepik.com/api/image/ai/9a07baa7-b49b-4f6b-99fb-2d2b908800c2"
-        />
-        <Prayer
-          name="الظهر"
-          time={timings.Dhuhr}
-          img="https://wepik.com/api/image/ai/9a07bb45-6a42-4145-b6aa-2470408a2921"
-        />
-        <Prayer
-          name="العصر"
-          time={timings.Asr}
-          img="https://wepik.com/api/image/ai/9a07bb90-1edc-410f-a29a-d260a7751acf"
-        />
-        <Prayer
-          name="المغرب"
-          time={timings.Sunset}
-          img="https://wepik.com/api/image/ai/9a07bbe3-4dd1-43b4-942e-1b2597d4e1b5"
-        />
-        <Prayer
-          name="العشاء"
-          time={timings.Isha}
-          img="https://wepik.com/api/image/ai/9a07bc25-1200-4873-8743-1c370e9eff4d"
-        />
+      <Stack className="prayer-satck-container">
+        <Prayer name="الفجر" time={timings.Fajr} img="/fajr.webp" />
+        <Prayer name="الظهر" time={timings.Dhuhr} img="/dhhr.webp" />
+        <Prayer name="العصر" time={timings.Asr} img="/asr.webp" />
+        <Prayer name="المغرب" time={timings.Sunset} img="/sunset.webp" />
+        <Prayer name="العشاء" time={timings.Isha} img="/night.webp" />
       </Stack>
       {/*===> third Row <===*/}
       <Stack direction="row" className="third-row" style={{ direction: "rtl" }}>

@@ -4,7 +4,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
 // eslint-disable-next-line react/prop-types
-export default function MediaCard({ name, time, img }) {
+export default function Prayer({ name, time, img }) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia sx={{ height: 140 }} image={img} title="green iguana" />
